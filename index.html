@@ -399,48 +399,207 @@
     </div>
   </section>
 
-  <!-- ===== ACHIEVEMENTS / STATS ===== -->
-  <section id="achievements">
-    <div class="container">
-      <h2 class="section-title">Achievements & Stats</h2>
+  <!-- ===== 🏆 ACHIEVEMENTS SECTION – GROSS & BEEINDRUCKEND ===== -->
+<section id="achievements" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h2 class="section-title">🏆 Meine Achievements</h2>
+      <p style="color: var(--text-secondary); max-width: 700px; margin: 1rem auto 0;">
+        Erfolge, Meilensteine und Badges – hier siehst du, was ich erreicht habe. 
+        Jeder Badge erzählt eine Geschichte! 💪
+      </p>
+    </div>
+
+    <!-- 🎖️ Achievements Grid – GROSS & VISUELL -->
+    <div class="achievements-grid" style="
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 1.5rem; 
+      margin-bottom: 3rem;
+    ">
       
-      <div class="stats-grid">
-        <div class="stat-card animate">
-          <div class="stat-number">125+</div>
-          <div class="stat-label">Bots entwickelt</div>
+      <!-- Achievement Card 1: YOLO -->
+      <div class="achievement-card animate" style="
+        background: var(--bg-card); 
+        border: 2px solid var(--border); 
+        border-radius: var(--radius); 
+        padding: 2rem; 
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      ">
+        <div style="
+          position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+          background: radial-gradient(circle, rgba(88,166,255,0.1) 0%, transparent 70%);
+          pointer-events: none;
+        "></div>
+        
+        <div style="
+          width: 100px; height: 100px; margin: 0 auto 1.2rem;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          border: 4px solid var(--bg-primary); box-shadow: var(--shadow);
+        ">
+          <img src="https://camo.githubusercontent.com/6bc642fdce8b38304664d7e656f6bc4c63d6ded62b05d357d61957a556536eed/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f796f6c6f2d64656661756c742e706e67" 
+               alt="YOLO Achievement" 
+               style="width: 60px; height: 60px; object-fit: contain;">
         </div>
-        <div class="stat-card animate">
-          <div class="stat-number">6.000+</div>
-          <div class="stat-label">Code Zeilen</div>
-        </div>
-        <div class="stat-card animate">
-          <div class="stat-number">∞</div>
-          <div class="stat-label">Kaffee getrunken ☕</div>
-        </div>
-        <div class="stat-card animate">
-          <div class="stat-number">🚀</div>
-          <div class="stat-label">Projekte live</div>
+        
+        <h3 style="color: var(--accent); margin-bottom: 0.5rem; font-size: 1.3rem;">🎲 YOLO</h3>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          "You Only Live Once" – Für mutige Commits und riskante, aber geniale Ideen! 
+          Manchmal muss man einfach springen. 🚀
+        </p>
+        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+          <strong>Freigeschaltet:</strong> 2026
         </div>
       </div>
 
-      <div style="margin-top: 2rem; text-align: center;">
-        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-          <strong>GitHub Achievements:</strong>
+      <!-- Achievement Card 2: Pull Shark -->
+      <div class="achievement-card animate" style="
+        background: var(--bg-card); 
+        border: 2px solid var(--border); 
+        border-radius: var(--radius); 
+        padding: 2rem; 
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      ">
+        <div style="
+          position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+          background: radial-gradient(circle, rgba(63,185,80,0.1) 0%, transparent 70%);
+          pointer-events: none;
+        "></div>
+        
+        <div style="
+          width: 100px; height: 100px; margin: 0 auto 1.2rem;
+          background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+          border-radius: 50%; display: flex; align-items: center; justify-content: center;
+          border: 4px solid var(--bg-primary); box-shadow: var(--shadow);
+        ">
+          <img src="https://camo.githubusercontent.com/30d802235f2d43cb576596adbcd75719ad6b0e479fa35c072f7a8d9c310e2c5f/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f70756c6c2d736861726b2d64656661756c742e706e67" 
+               alt="Pull Shark Achievement" 
+               style="width: 60px; height: 60px; object-fit: contain;">
+        </div>
+        
+        <h3 style="color: var(--success); margin-bottom: 0.5rem; font-size: 1.3rem;">🦈 Pull Shark</h3>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">
+          Für erfolgreiche Pull Requests! Ich trage aktiv zu Projekten bei 
+          und helfe, Code besser zu machen. 🤝
         </p>
-        <div class="badges">
-          <div class="badge">
-            <img src="https://camo.githubusercontent.com/6bc642fdce8b38304664d7e656f6bc4c63d6ded62b05d357d61957a556536eed/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f796f6c6f2d64656661756c742e706e67" alt="Yolo">
-            YOLO
-          </div>
-          <div class="badge">
-            <img src="https://camo.githubusercontent.com/30d802235f2d43cb576596adbcd75719ad6b0e479fa35c072f7a8d9c310e2c5f/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f70756c6c2d736861726b2d64656661756c742e706e67" alt="Pull Shark">
-            Pull Shark
-          </div>
-          <!-- 🔁 Weitere Achievements hier -->
+        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+          <strong>Freigeschaltet:</strong> 2026
+        </div>
+      </div>
+
+      <!-- Achievement Card 3: PLATZHALTER – zum Ausfüllen -->
+      <div class="achievement-card animate" style="
+        background: var(--bg-card); 
+        border: 2px dashed var(--border); 
+        border-radius: var(--radius); 
+        padding: 2rem; 
+        text-align: center;
+        transition: var(--transition);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        min-height: 280px;
+      ">
+        <div style="
+          width: 100px; height: 100px; margin: 0 auto 1.2rem;
+          background: var(--bg-secondary); border-radius: 50%; 
+          display: flex; align-items: center; justify-content: center;
+          border: 3px dashed var(--accent); color: var(--accent);
+          font-size: 2.5rem;
+        ">
+          ➕
+        </div>
+        
+        <h3 style="color: var(--text-secondary); margin-bottom: 0.5rem; font-size: 1.2rem;">Dein nächster Achievement</h3>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+          Hier kommt dein nächster Badge hin! 
+          <br><em>Kopiere eine Card oben und passe sie an.</em>
+        </p>
+      </div>
+
+      <!-- 🔁 Weitere Achievement-Cards hier einfügen (einfach Card kopieren) -->
+
+    </div>
+
+    <!-- 📊 Stats Bar – Visuell hervorgehoben -->
+    <div class="stats-showcase" style="
+      background: var(--bg-card); 
+      border: 1px solid var(--border); 
+      border-radius: var(--radius); 
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    ">
+      <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--accent);">
+        📈 Meine Stats im Überblick
+      </h3>
+      
+      <div style="
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+        gap: 1.5rem;
+        text-align: center;
+      ">
+        <div class="stat-item">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">125+</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">Bots entwickelt</div>
+        </div>
+        <div class="stat-item">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--success);">6K+</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">Code-Zeilen</div>
+        </div>
+        <div class="stat-item">
+          <div style="font-size: 2.5rem; font-weight: 700; color: #f0f6fc;">∞</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">Kaffee ☕</div>
+        </div>
+        <div class="stat-item">
+          <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">🚀</div>
+          <div style="color: var(--text-secondary); font-size: 0.9rem;">Projekte live</div>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- 🎯 Progress / Next Goals -->
+    <div style="
+      margin-top: 2rem; 
+      background: var(--bg-card); 
+      border: 1px solid var(--border); 
+      border-radius: var(--radius); 
+      padding: 1.5rem;
+    ">
+      <h4 style="margin-bottom: 1rem; color: var(--text-primary);">🎯 Nächstes Ziel</h4>
+      <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem; font-size: 0.9rem;">
+            <span style="color: var(--text-secondary);">Open-Source Contribution</span>
+            <span style="color: var(--accent); font-weight: 600;">75%</span>
+          </div>
+          <div style="
+            height: 8px; background: var(--bg-secondary); 
+            border-radius: 4px; overflow: hidden;
+          ">
+            <div style="
+              width: 75%; height: 100%; 
+              background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+              border-radius: 4px;
+              transition: width 0.5s ease;
+            "></div>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="white-space: nowrap;" onclick="alert('Weiter so! 🎉')">
+          💪 Weitermachen
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- ===== CONTACT ===== -->
   <section id="contact" style="background: var(--bg-secondary);">
