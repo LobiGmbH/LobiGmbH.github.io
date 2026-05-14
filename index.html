@@ -1,122 +1,542 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@LobiGmbh | Developer Profile</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-        }
-        .glass-card {
-            background: rgba(22, 27, 34, 0.8);
-            border: 1px solid #30363d;
-            border-radius: 12px;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #58a6ff, #bc8cff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .achievement-badge {
-            transition: transform 0.3s ease;
-        }
-        .achievement-badge:hover {
-            transform: scale(1.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@LobiGmbh | Developer Profile</title>
+  <meta name="description" content="Developer Portfolio von @LobiGmbh – Projekte, Achievements & mehr" />
+  
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="Profile.png" type="image/png" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== CSS VARIABLES – Easy Customization ===== */
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-card: #21262d;
+      --text-primary: #f0f6fc;
+      --text-secondary: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --border: #30363d;
+      --success: #3fb950;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      font-size: 1.4rem; font-weight: 700; color: var(--text-primary);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex; gap: 1.5rem; list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-secondary); font-weight: 500; font-size: 0.95rem;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      padding: 5rem 0 3rem;
+      text-align: center;
+    }
+    .profile-wrapper {
+      position: relative; width: 180px; height: 180px;
+      margin: 0 auto 1.5rem;
+    }
+    .profile-img {
+      width: 100%; height: 100%; border-radius: 50%;
+      object-fit: cover; border: 4px solid var(--accent);
+      box-shadow: var(--shadow);
+      background: var(--bg-card);
+    }
+    .status-dot {
+      position: absolute; bottom: 10px; right: 10px;
+      width: 24px; height: 24px; background: var(--success);
+      border: 4px solid var(--bg-primary); border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: 2.5rem; margin-bottom: 0.5rem;
+    }
+    .hero .username {
+      color: var(--accent); font-weight: 600;
+    }
+    .hero p {
+      color: var(--text-secondary); max-width: 600px; margin: 0 auto 1.5rem;
+    }
+    .badges {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .badge {
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 0.4rem 0.8rem; border-radius: 20px;
+      font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .badge img { width: 20px; height: 20px; }
+    .cta-buttons {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600;
+      cursor: pointer; transition: var(--transition); border: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary {
+      background: var(--accent); color: #0d1117;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .btn-secondary {
+      background: var(--bg-card); color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 4rem 0; }
+    .section-title {
+      font-size: 1.8rem; margin-bottom: 2rem; position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: ''; position: absolute; bottom: -8px; left: 0;
+      width: 50%; height: 3px; background: var(--accent); border-radius: 2px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      box-shadow: var(--shadow); transition: var(--transition);
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card h3 { margin-bottom: 1rem; color: var(--accent); }
+    .card p, .card li { color: var(--text-secondary); }
+    .card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+    .card li { margin-bottom: 0.3rem; }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: var(--transition);
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .project-img {
+      height: 160px; background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); font-size: 2rem;
+    }
+    .project-content { padding: 1.25rem; }
+    .project-content h3 { margin-bottom: 0.5rem; }
+    .project-content p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .tag {
+      background: var(--bg-secondary); color: var(--text-secondary);
+      padding: 0.25rem 0.6rem; border-radius: 6px; font-size: 0.8rem;
+    }
+    .project-links { display: flex; gap: 0.8rem; }
+    .project-links a { font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ===== STATS / ACHIEVEMENTS ===== */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-top: 1.5rem;
+    }
+    .stat-card {
+      text-align: center; padding: 1.25rem;
+      background: var(--bg-card); border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .stat-number {
+      font-size: 2rem; font-weight: 700; color: var(--accent);
+    }
+    .stat-label { color: var(--text-secondary); font-size: 0.9rem; }
+
+    /* ===== CONTACT / FOOTER ===== */
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.5rem;
+      flex-wrap: wrap; margin: 2rem 0;
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-secondary); font-size: 1rem;
+    }
+    .contact-link:hover { color: var(--accent); }
+    footer {
+      text-align: center; padding: 2rem 0;
+      color: var(--text-secondary); font-size: 0.9rem;
+      border-top: 1px solid var(--border); margin-top: 2rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed; top: 70px; left: 0; right: 0;
+        background: var(--bg-secondary); flex-direction: column;
+        padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border);
+        transform: translateY(-150%); transition: var(--transition);
+      }
+      .nav-links.active { transform: translateY(0); }
+      .mobile-toggle { display: block; }
+      .hero h1 { font-size: 2rem; }
+      .section-title { font-size: 1.5rem; }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeInUp 0.6s ease forwards; }
+    .animate:nth-child(2) { animation-delay: 0.1s; }
+    .animate:nth-child(3) { animation-delay: 0.2s; }
+    .animate:nth-child(4) { animation-delay: 0.3s; }
+  </style>
 </head>
-<body class="font-sans antialiased">
+<body>
 
-    <header class="py-16 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="relative inline-block">
-                <img src="Profile.png" alt="LobiGmbh Profile" class="w-32 h-32 rounded-full border-4 border-blue-500 shadow-xl mx-auto mb-4 object-cover">
-                <div class="absolute bottom-2 right-2 bg-green-500 w-5 h-5 rounded-full border-2 border-gray-900"></div>
-            </div>
-            
-            <h1 class="text-4xl font-bold mb-2">
-                Hi, ich bin <span class="gradient-text">@LobiGmbh</span>
-            </h1>
-            <p class="text-xl text-gray-400 mb-6">Fullstack Developer | Open Source Enthusiast</p>
-            
-            <div class="flex justify-center gap-4">
-                <a href="https://github.com/LobiGmbh" class="text-gray-400 hover:text-white text-2xl transition"><i class="fab fa-github"></i></a>
-                <a href="#" class="text-gray-400 hover:text-blue-400 text-2xl transition"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="text-gray-400 hover:text-blue-600 text-2xl transition"><i class="fab fa-linkedin"></i></a>
-            </div>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">&lt;<span>LobiGmbh</span>/&gt;</div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" class="active">Über mich</a></li>
+          <li><a href="#projects">Projekte</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+        <div class="mobile-toggle" id="mobileToggle">☰</div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="profile-wrapper animate">
+        <!-- 🔁 Profilbild: 'Profile.png' muss im selben Repo liegen -->
+        <img src="Profile.png" alt="Profilbild von @LobiGmbh" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=LobiGmbh&background=58a6ff&color=fff&size=180'">
+        <div class="status-dot" title="Online"></div>
+      </div>
+      
+      <h1 class="animate">Hi, ich bin <span class="username">@LobiGmbh</span> 👋</h1>
+      <p class="animate">Developer • Creator • Innovator<br>Ich baue coole Projekte mit Code, Kreativität und Kaffee ☕</p>
+      
+      <!-- Achievements Badges -->
+      <div class="badges animate">
+        <div class="badge">
+          <img src="https://camo.githubusercontent.com/6bc642fdce8b38304664d7e656f6bc4c63d6ded62b05d357d61957a556536eed/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f796f6c6f2d64656661756c742e706e67" alt="Yolo Achievement">
+          YOLO
         </div>
-    </header>
+        <div class="badge">
+          <img src="https://camo.githubusercontent.com/30d802235f2d43cb576596adbcd75719ad6b0e479fa35c072f7a8d9c310e2c5f/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f70756c6c2d736861726b2d64656661756c742e706e67" alt="Pull Shark Achievement">
+          Pull Shark
+        </div>
+        <!-- 🔁 Weitere Badges hier einfügen -->
+      </div>
 
-    <main class="max-w-4xl mx-auto px-4 pb-20">
+      <div class="cta-buttons animate">
+        <a href="#projects" class="btn btn-primary">🚀 Meine Projekte</a>
+        <a href="https://github.com/LobiGmbh" target="_blank" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">Über mich</h2>
+      <div class="about-grid">
+        <div class="card animate">
+          <h3>👨‍💻 Wer bin ich?</h3>
+          <p>
+            <!-- 🔁 Hier deine Bio eintragen -->
+            Hey! Ich bin <strong>@LobiGmbh</strong>, ein leidenschaftlicher Developer aus [Dein Ort]. 
+            Ich liebe es, innovative Lösungen zu coden und neue Technologien zu erkunden.
+          </p>
+          <p style="margin-top: 1rem;">
+            Aktuell arbeite ich an: <strong>[Projekt einfügen]</strong>
+          </p>
+        </div>
         
-        <section class="glass-card p-8 mb-8">
-            <h2 class="text-2xl font-semibold mb-4 border-b border-gray-700 pb-2">Über mich</h2>
-            <p class="leading-relaxed">
-                Willkommen auf meiner Seite! Ich bin leidenschaftlicher Entwickler und arbeite gerne an innovativen Projekten. 
-                Hier kannst du eine Beschreibung deiner Skills, deiner Erfahrung und deiner Interessen einfügen. 
-                Ich liebe es, komplexe Probleme zu lösen und sauberen Code zu schreiben.
-            </p>
-        </section>
+        <div class="card animate">
+          <h3>🛠 Tech Stack</h3>
+          <ul>
+            <!-- 🔁 Deine Skills hier auflisten -->
+            <li>🌐 HTML5, CSS3, JavaScript</li>
+            <li>⚛️ React / Vue / [Dein Framework]</li>
+            <li>🐍 Python / Node.js</li>
+            <li>🗄️ Git, GitHub, Docker</li>
+            <li>🎨 Figma, UI/UX Basics</li>
+            <li>➕ [Mehr hinzufügen...]</li>
+          </ul>
+        </div>
+        
+        <div class="card animate">
+          <h3>🎯 Ziele 2026</h3>
+          <ul>
+            <!-- 🔁 Deine Ziele -->
+            <li>✅ [Ziel 1: z.B. "Erste Open-Source Contribution"]</li>
+            <li>🔄 [Ziel 2: z.B. "Nano Host launchen"]</li>
+            <li>📅 [Ziel 3: z.B. "KI-Projekt Nano-AI starten"]</li>
+            <li>✨ [Dein Ziel hier...]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="mb-8">
-            <h2 class="text-2xl font-semibold mb-6 text-center">GitHub Achievements</h2>
-            <div class="flex flex-wrap justify-center gap-8">
-                <div class="text-center w-24">
-                    <img src="https://camo.githubusercontent.com/6bc642fdce8b38304664d7e656f6bc4c63d6ded62b05d357d61957a556536eed/68747470733a2f2f6769746875622e6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f796f6c6f2d64656661756c742e706e67" 
-                         alt="YOLO" class="achievement-badge w-20 h-20 mx-auto mb-2">
-                    <span class="text-xs text-gray-400">YOLO</span>
-                </div>
-                <div class="text-center w-24">
-                    <img src="https://camo.githubusercontent.com/30d802235f2d43cb576596adbcd75719ad6b0e479fa35c072f7a8d9c310e2c5f/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f70756c6c2d736861726b2d64656661756c742e706e67" 
-                         alt="Pull Shark" class="achievement-badge w-20 h-20 mx-auto mb-2">
-                    <span class="text-xs text-gray-400">Pull Shark</span>
-                </div>
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" style="background: var(--bg-secondary);">
+    <div class="container">
+      <h2 class="section-title">Meine Projekte</h2>
+      <div class="projects-grid">
+        
+        <!-- Projekt 1 -->
+        <div class="project-card animate">
+          <div class="project-img">🎮</div>
+          <div class="project-content">
+            <h3>Happy Client 0.1 Beta</h3>
+            <p>Minecraft Client mit intelligenten Bots, Rangliste und Kollisions-System.</p>
+            <div class="project-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Minecraft</span>
+              <span class="tag">Bots</span>
             </div>
-        </section>
-
-        <section>
-            <h2 class="text-2xl font-semibold mb-6 border-b border-gray-700 pb-2">Top Projekte</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass-card p-6 hover:border-blue-500 transition">
-                    <h3 class="text-blue-400 font-bold mb-2">🚀 Projekt Name 1</h3>
-                    <p class="text-sm text-gray-400 mb-4">Eine kurze Beschreibung deines Projekts. Was macht es besonders?</p>
-                    <div class="flex gap-2">
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">JavaScript</span>
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">Node.js</span>
-                    </div>
-                </div>
-                <div class="glass-card p-6 hover:border-purple-500 transition">
-                    <h3 class="text-purple-400 font-bold mb-2">🛠️ Projekt Name 2</h3>
-                    <p class="text-sm text-gray-400 mb-4">Beschreibe hier dein zweitwichtigstes Repo. Welche Technologien nutzt du?</p>
-                    <div class="flex gap-2">
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">Python</span>
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">API</span>
-                    </div>
-                </div>
+            <div class="project-links">
+              <a href="https://github.com/LobiGmbh/happy-client" target="_blank">🔗 Repo</a>
+              <a href="#">📄 Demo</a>
             </div>
-        </section>
+          </div>
+        </div>
 
-        <section class="mt-12 glass-card p-8">
-            <h2 class="text-2xl font-semibold mb-6 text-center">Tech Stack</h2>
-            <div class="flex flex-wrap justify-center gap-6 text-3xl">
-                <i class="fab fa-html5 text-orange-500" title="HTML5"></i>
-                <i class="fab fa-css3-alt text-blue-500" title="CSS3"></i>
-                <i class="fab fa-js text-yellow-400" title="JavaScript"></i>
-                <i class="fab fa-react text-blue-400" title="React"></i>
-                <i class="fab fa-python text-blue-600" title="Python"></i>
-                <i class="fab fa-git-alt text-red-500" title="Git"></i>
+        <!-- Projekt 2 -->
+        <div class="project-card animate">
+          <div class="project-img">🤖</div>
+          <div class="project-content">
+            <h3>Nano-AI</h3>
+            <p>Eigene KI-Entwicklung – inspiriert von ChatGPT, Qwen & Gemini.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">NLP</span>
             </div>
-        </section>
+            <div class="project-links">
+              <a href="https://github.com/LobiGmbh/nano-ai" target="_blank">🔗 Repo</a>
+              <a href="#">📄 Docs</a>
+            </div>
+          </div>
+        </div>
 
-    </main>
+        <!-- Projekt 3 -->
+        <div class="project-card animate">
+          <div class="project-img">🖥️</div>
+          <div class="project-content">
+            <h3>Nano Host</h3>
+            <p>Minecraft-Server-Hosting mit Tarifen: Free, Ultra, Nano &gt;GOD&lt;</p>
+            <div class="project-tags">
+              <span class="tag">Web</span>
+              <span class="tag">Hosting</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+            <div class="project-links">
+              <a href="https://thenano-host.github.io" target="_blank">🌐 Live</a>
+              <a href="https://github.com/thenano-host" target="_blank">🔗 Code</a>
+            </div>
+          </div>
+        </div>
 
-    <footer class="text-center py-10 border-t border-gray-800">
-        <p class="text-gray-500 text-sm">© 2024 LobiGmbh. Erstellt mit ❤️ und HTML/Tailwind.</p>
-    </footer>
+        <!-- 🔁 Weitere Projekte kopieren & anpassen -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ACHIEVEMENTS / STATS ===== -->
+  <section id="achievements">
+    <div class="container">
+      <h2 class="section-title">Achievements & Stats</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card animate">
+          <div class="stat-number">125+</div>
+          <div class="stat-label">Bots entwickelt</div>
+        </div>
+        <div class="stat-card animate">
+          <div class="stat-number">6.000+</div>
+          <div class="stat-label">Code Zeilen</div>
+        </div>
+        <div class="stat-card animate">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Kaffee getrunken ☕</div>
+        </div>
+        <div class="stat-card animate">
+          <div class="stat-number">🚀</div>
+          <div class="stat-label">Projekte live</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; text-align: center;">
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          <strong>GitHub Achievements:</strong>
+        </p>
+        <div class="badges">
+          <div class="badge">
+            <img src="https://camo.githubusercontent.com/6bc642fdce8b38304664d7e656f6bc4c63d6ded62b05d357d61957a556536eed/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f796f6c6f2d64656661756c742e706e67" alt="Yolo">
+            YOLO
+          </div>
+          <div class="badge">
+            <img src="https://camo.githubusercontent.com/30d802235f2d43cb576596adbcd75719ad6b0e479fa35c072f7a8d9c310e2c5f/68747470733a2f2f6769746875622e6769746875626173736574732e636f6d2f696d616765732f6d6f64756c65732f70726f66696c652f616368696576656d656e74732f70756c6c2d736861726b2d64656661756c742e706e67" alt="Pull Shark">
+            Pull Shark
+          </div>
+          <!-- 🔁 Weitere Achievements hier -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" style="background: var(--bg-secondary);">
+    <div class="container" style="text-align: center;">
+      <h2 class="section-title">Kontakt</h2>
+      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
+        Hast du eine Idee, ein Projekt oder willst einfach quatschen? 
+        Schreib mir gerne! 👇
+      </p>
+      
+      <div class="contact-links">
+        <a href="https://github.com/LobiGmbh" target="_blank" class="contact-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="mailto:deine-email@beispiel.de" class="contact-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          E-Mail
+        </a>
+        <a href="#" class="contact-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          Discord
+        </a>
+        <!-- 🔁 Weitere Kontakte hinzufügen -->
+      </div>
+
+      <!-- Optional: Kontaktformular (funktioniert nur mit Backend / Formspree o.ä.) -->
+      <!-- 
+      <form action="https://formspree.io/f/DEINE_ID" method="POST" style="max-width: 500px; margin: 2rem auto; text-align: left;">
+        <input type="text" name="name" placeholder="Dein Name" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary);">
+        <input type="email" name="email" placeholder="Deine E-Mail" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary);">
+        <textarea name="message" placeholder="Deine Nachricht" rows="4" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); resize: vertical;"></textarea>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">📤 Senden</button>
+      </form>
+      -->
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <p>
+        &copy; 2026 <strong>@LobiGmbh</strong> • Made with ❤️ & Code<br>
+        <small>Hosted on GitHub Pages • <a href="https://github.com/LobiGmbh/LobiGmbh.github.io" target="_blank">Repo</a></small>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Mobile Navigation Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileToggle?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+
+    // Smooth Scroll für Anker-Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Mobile Menu schließen nach Klick
+          navLinks?.classList.remove('active');
+          if(mobileToggle) mobileToggle.textContent = '☰';
+        }
+      });
+    });
+
+    // Active Link Highlight on Scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links a');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href')?.slice(1) === current) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Fallback: Wenn Profile.png nicht lädt, wird UI-Avatar genutzt (siehe onerror im img-Tag)
+  </script>
 
 </body>
 </html>
